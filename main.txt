@@ -1,0 +1,8 @@
+| Aspect                     | **Other Person’s Code**                                   | **my code**                                               | **Difference**                                       |
+| -------------------------- | --------------------------------------------------------- | ----------------------------------------------------------- | ---------------------------------------------------- |
+| **Kernel Body**            | Empty with `// TODO`                                      | Fully implemented with shared memory reduction              | ✅ You implemented the kernel logic                   |
+| **Duplicate Declarations** | No duplicate host/device declarations                     | Declares `h_input`, `h_output`, `d_input`, `d_output` twice | ❌ Remove repeated declarations in your `main()`      |
+| **Loop to Fill Input**     | One loop `for (int i = 0; i < N; i++) h_input[i] = 1.0f;` | Same loop written **twice**                                 | ❌ Redundant loop — remove one copy                   |
+| **Error Checking**         | No error checking after kernel call                       | Checks with `cudaGetLastError()`                            | ✅ Good practice – keep it                            |
+| **Final Output Message**   | `printf("Sum = %f\n", h_output[0]);`                      | Same                                                        | ✅ No difference                                      |
+| **Freeing memory**         | Frees once: `free(); cudaFree();`                         | Calls `free()` and `cudaFree()` **twice**                   | ❌ Redundant — remove extra `free()` and `cudaFree()` |
